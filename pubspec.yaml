@@ -1,6 +1,6 @@
 name: flutter_month_select
 description: A package flutter_month_select helps to select month of the year easily in android and ios.
-version: 0.0.1
+version: 0.0.2
 homepage: https://github.com/WhiteOrange/flutter_month_select.git
 
 environment:
