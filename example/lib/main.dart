@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_month_select/flutter_month_select.dart';
 
@@ -17,43 +18,31 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const DemoMonthSelector(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-  final String title;
+class DemoMonthSelector extends StatelessWidget {
+  const DemoMonthSelector({Key? key}) : super(key: key);
 
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
+        title: const Text("Flutter month picker"),
       ),
+      body: Center(
+        child: GestureDetector(
+          onTap: () async {
+            DateTime? picker = await showMonthYearPicker(context: context, initialDate: DateTime(2023), firstDate: DateTime(2022), lastDate: DateTime(2050));
 
-      floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          /// this method we can use for month select
-          DateTime? picker = await showMonthYearPicker(
-              context: context,
-              initialDate: DateTime(2023),
-              firstDate: DateTime(2022),
-              lastDate: DateTime.now());
-
-          /// we can get the selected month in picker
-          /// note picker can be nullable
-        },
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+            /// we can get the selected month in picker
+            /// note picker can be nullable
+          },
+          child: const Text("Click here to open month picker"),
+        ),
+      ),
     );
   }
 }
